@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>English:</strong>
+  <%= @dictionary.english %>
+</p>
+
+<p>
+  <strong>Vietnamese unsigned:</strong>
+  <%= @dictionary.vietnamese_unsigned %>
+</p>
+
+<p>
+  <strong>Vietnamese:</strong>
+  <%= @dictionary.vietnamese %>
+</p>
+
+<p>
+  <strong>Categories:</strong>
+  <%= @dictionary.categories.pluck(:name).join(', ') %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @dictionary.description %>
+</p>
+
+<p>
+  <strong>Learning count:</strong>
+  <%= @dictionary.learning_count %>
+</p>
+
+<p>
+  <strong>Learning speed:</strong>
+  <%= @dictionary.learning_speed %>
+</p>
+
+<%= link_to 'Edit', edit_dictionary_path(@dictionary) %> |
+<%= link_to 'Back', dictionaries_path %>

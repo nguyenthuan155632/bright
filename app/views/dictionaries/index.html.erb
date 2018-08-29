@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Dictionaries</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>English</th>
+      <th>Vietnamese unsigned</th>
+      <th>Vietnamese</th>
+      <th>Categories</th>
+      <th>Description</th>
+      <th>Learning count</th>
+      <th>Learning speed</th>
+      <th colspan="2">Lookup</th>
+      <th colspan="3">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dictionaries.each do |dictionary| %>
+      <tr>
+        <td><%= dictionary.english %></td>
+        <td><%= dictionary.vietnamese_unsigned %></td>
+        <td><%= dictionary.vietnamese %></td>
+        <td><%= dictionary.categories.pluck(:name).join(', ') %></td>
+        <td><%= dictionary.description %></td>
+        <td><%= dictionary.learning_count %></td>
+        <td><%= dictionary.learning_speed %></td>
+        <td><%= link_to 'Laban', "https://dict.laban.vn/find?type=1&query=#{dictionary.english.split(' ').join('+')}", target: '_blank' %></td>
+        <td><%= link_to 'Google', "https://translate.google.com.vn/m/translate?hl=vi#view=home&op=translate&sl=en&tl=vi&text=#{dictionary.english}", target: '_blank' %></td>
+        <td><%= link_to 'Show', dictionary %></td>
+        <td><%= link_to 'Edit', edit_dictionary_path(dictionary) %></td>
+        <td><%= link_to 'Destroy', dictionary, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Create A New Word', new_dictionary_path %>

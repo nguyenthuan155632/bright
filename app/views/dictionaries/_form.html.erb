@@ -1,0 +1,52 @@
+<%= form_with(model: dictionary, local: true) do |form| %>
+  <% if dictionary.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(dictionary.errors.count, "error") %> prohibited this dictionary from being saved:</h2>
+
+      <ul>
+      <% dictionary.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :english %>
+    <%= form.text_field :english %>
+  </div>
+
+  <div class="field">
+    <%= form.label :vietnamese_unsigned %>
+    <%= form.text_field :vietnamese_unsigned %>
+  </div>
+
+  <div class="field">
+    <%= form.label :vietnamese %>
+    <%= form.text_field :vietnamese %>
+  </div>
+
+  <div class="field">
+    <%= form.label :category_id %>
+    <%= form.select :category_ids, Category.all.collect { |x| [x.name, x.id] }, {}, multiple: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :learning_count %>
+    <%= form.number_field :learning_count %>
+  </div>
+
+  <div class="field">
+    <%= form.label :learning_speed %>
+    <%= form.number_field :learning_speed %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

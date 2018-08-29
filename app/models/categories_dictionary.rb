@@ -1,0 +1,2 @@
+class CategoriesDictionary < ApplicationRecord
+end
