@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :dictionaries
+  resources :dictionaries do
+  	collection do
+  		get 'search'
+  	end
+  end
   resources :categories
   get 'play/options', to: 'play#options'
   get 'play/game', to: 'play#game'

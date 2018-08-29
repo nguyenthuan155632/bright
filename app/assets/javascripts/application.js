@@ -34,6 +34,17 @@ var getCheckedCheckboxesFor = function(checkboxName) {
   return values;
 }
 
+var findGetParameter = function(parameterName) {
+  var result = null,
+      tmp = [];
+  var items = location.search.substr(1).split("&");
+  for (var index = 0; index < items.length; index++) {
+    tmp = items[index].split("=");
+    if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+  }
+  return result;
+}
+
 var change_param = function(param, value) {
   game_url[param] = value;
 }
@@ -53,6 +64,14 @@ $(document).ready(function(){
   });
 
   $('#start-game').on('click', function() {
-    window.location.href = host() + '/play/game?' + $.param(game_url);
+    window.location.href = host() + '/play/game/?' + $.param(game_url);
   });
+
+  $('#search-button').on('click', function() {
+    window.location.href = host() + '/dictionaries/search/?word=' + $('#search-input').val();
+  });
+
+  if(findGetParameter('word')) {
+    $('#search-input').val(findGetParameter('word'));
+  }
 });

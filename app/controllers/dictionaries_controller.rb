@@ -4,7 +4,11 @@ class DictionariesController < ApplicationController
   # GET /dictionaries
   # GET /dictionaries.json
   def index
-    @dictionaries = Dictionary.includes(:categories)
+    @dictionaries = Dictionary.includes(:categories).page(params[:page]).per(20)
+  end
+
+  def search
+    @dictionaries = Dictionary.includes(:categories).where('dictionaries.english LIKE ? OR dictionaries.vietnamese_unsigned LIKE ?', "%#{params[:word]}%", "%#{params[:word]}%")
   end
 
   # GET /dictionaries/1
