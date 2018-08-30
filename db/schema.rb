@@ -12,24 +12,24 @@
 
 ActiveRecord::Schema.define(version: 2018_08_30_145908) do
 
-  create_table "categories", force: :cascade do |t|
+  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "categories_dictionaries", id: false, force: :cascade do |t|
+  create_table "categories_dictionaries", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "category_id"
     t.integer "dictionary_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "dictionaries", force: :cascade do |t|
+  create_table "dictionaries", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "english"
     t.string "vietnamese_unsigned"
     t.string "vietnamese"
-    t.integer "category_id"
+    t.bigint "category_id"
     t.text "description"
     t.integer "learning_count"
     t.integer "learning_speed"
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 2018_08_30_145908) do
     t.index ["category_id"], name: "index_dictionaries_on_category_id"
   end
 
-  create_table "histories", force: :cascade do |t|
+  create_table "histories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "words"
     t.string "dict_type"
     t.string "categories"
@@ -53,4 +53,5 @@ ActiveRecord::Schema.define(version: 2018_08_30_145908) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "dictionaries", "categories"
 end
