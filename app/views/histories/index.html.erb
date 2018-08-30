@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Histories</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Words</th>
+      <th>Dictionary</th>
+      <th>Categories</th>
+      <th>Count</th>
+      <th>Alphabet</th>
+      <th>Finish Time</th>
+      <th>Status</th>
+      <th>Score</th>
+      <th>Right Words</th>
+      <th>Wrong Words</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @histories.each do |history| %>
+      <tr>
+        <td><%= Dictionary.where('id IN (?)', history.words ? history.words.split(',').map(&:to_i) : []).pluck(:english).join(', ') %></td>
+        <td><%= history.dict_type == 'en-vi' ? 'English - Vietnamese' : 'Vietnamese - English' %></td>
+        <td><%= history.categories %></td>
+        <td><%= history.numeric %></td>
+        <td><%= history.alphabet.split('-').map(&:upcase).join(' - ') %></td>
+        <td><%= history.finish_time %> (s)</td>
+        <td><%= history.status.capitalize %></td>
+        <td><%= history.score %>/<%= history.numeric %></td>
+        <td><%= Dictionary.where('id IN (?)', history.right_words ? history.right_words.split(',').map(&:to_i) : []).pluck(:english).join(', ') %></td>
+        <td><%= Dictionary.where('id IN (?)', history.wrong_words ? history.wrong_words.split(',').map(&:to_i) : []).pluck(:english).join(', ') %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= paginate @histories %>
+<br>
+<br>
+<br>
+<br>
+<br>
