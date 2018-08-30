@@ -1,0 +1,24 @@
+current directory: /Users/vensera/bright/vendor/bundle/gems/redcarpet-3.0.0/ext/redcarpet
+/Users/vensera/.rbenv/versions/2.3.3/bin/ruby -r ./siteconf20180831-55667-myy789.rb extconf.rb
+creating Makefile
+
+current directory: /Users/vensera/bright/vendor/bundle/gems/redcarpet-3.0.0/ext/redcarpet
+make "DESTDIR=" clean
+
+current directory: /Users/vensera/bright/vendor/bundle/gems/redcarpet-3.0.0/ext/redcarpet
+make "DESTDIR="
+compiling buffer.c
+compiling autolink.c
+compiling rc_markdown.c
+compiling houdini_href_e.c
+compiling stack.c
+compiling houdini_html_e.c
+compiling markdown.c
+compiling html_smartypants.c
+compiling html.c
+compiling rc_render.c
+linking shared-object redcarpet.bundle
+
+current directory: /Users/vensera/bright/vendor/bundle/gems/redcarpet-3.0.0/ext/redcarpet
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 redcarpet.bundle ./.gem.20180831-55667-k87cif
