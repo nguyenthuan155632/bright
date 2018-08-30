@@ -1,14 +1,33 @@
 <div class="score-wrapper">
   <div id="score">
-    <%= @scene.score %>/<%= @scene.numeric %>
+    Score: <%= @scene.score %>/<%= @scene.numeric %>
   </div>
   <div id="finish_time">
-    <%= @scene.finish_time %> (seconds)
+    Finished in: <%= @scene.finish_time %> (seconds)
   </div>
   <div id="status">
-    <%= @scene.status == 'started' ? 'unfinished' : 'finished' %>
+    Status: <%= @scene.status == 'started' ? 'unfinished' : 'finished' %>
   </div>
   <div id="restart">
     <a href="/play/<%= @scene.id %>?index=0" class="btn btn-primary">Restart</a>
+  </div>
+  <br>
+  <div id="right-wrong" class="row" style="font-size: 20px; font-weight: 100;">
+    <div class="col-sm-6" style="color: #23b134;">
+      <strong>Right Words</strong> <br>
+      <ul style="list-style: none; padding: 0;">
+        <% Dictionary.where('id IN (?)', @scene.right_words ? @scene.right_words.split(',').map(&:to_i) : []).pluck(:english).each do |a| %>
+          <li><%= a %></li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="col-sm-6" style="color: #b12323;">
+      <strong>Wrong Words</strong> <br>
+      <ul style="list-style: none; padding: 0;">
+        <% Dictionary.where('id IN (?)', @scene.wrong_words ? @scene.wrong_words.split(',').map(&:to_i) : []).pluck(:english).each do |a| %>
+          <li><%= a %></li>
+        <% end %>
+    </ul>
+    </div>
   </div>
 </div>

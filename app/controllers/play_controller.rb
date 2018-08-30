@@ -16,7 +16,7 @@ class PlayController < ApplicationController
   def show
     @index = params[:index].to_i
     @scene = History.find(params[:id])
-    @scene.update(finish_time: 0, status: :started, score: 0, right_words: nil, wrong_words: nil) if @index.zero?
+    @scene.update(finish_time: 0, status: :started, score: 0, right_words: nil, wrong_words: nil, created_at: Time.zone.now) if @index.zero?
     @word = Dictionary.find(@scene.words.split(',')[params[:index].to_i].to_i)
     @source_word = @scene.dict_type == 'en-vi' ? @word.english : @word.vietnamese
     @destination_word = @scene.dict_type == 'en-vi' ? @word.vietnamese : @word.english
@@ -29,7 +29,7 @@ class PlayController < ApplicationController
     started_time = scene.created_at
     if params[:status] == 'true'
       score = scene.score + 1
-      right_words = scene.right_words ? (scene.right_words.to_s + scene.words.split(',')[params[:index].to_i]) : (scene.words.split(',')[params[:index].to_i])
+      right_words = scene.right_words ? (scene.right_words.to_s + ',' + scene.words.split(',')[params[:index].to_i]) : (scene.words.split(',')[params[:index].to_i])
       scene.update(finish_time: (Time.zone.now - started_time).round, status: status, score: score, right_words: right_words)
     else
       wrong_words = scene.wrong_words ? (scene.wrong_words.to_s + ',' + scene.words.split(',')[params[:index].to_i]) : (scene.words.split(',')[params[:index].to_i])
