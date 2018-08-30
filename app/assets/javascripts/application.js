@@ -15,6 +15,7 @@
 //= require jquery3
 //= require popper
 //= require bootstrap
+//= require simplemde.min
 //= require_tree .
 
 var game_url = { dictionary: 'en-vi', categories: 'Noun,Adjective,Verb,Adverb,Noun Phrase', numeric: '20', alphabet: 'all' };

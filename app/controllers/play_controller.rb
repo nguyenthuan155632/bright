@@ -9,6 +9,7 @@ class PlayController < ApplicationController
                        .where(categories: { name: strong_params[:categories].split(',') })
                        .where(alphabet_query)
                        .order(Arel.sql('RANDOM()'))[0, strong_params[:numeric].to_i]
+    update_learning(@words)
     game_index = start_game(@words)
     redirect_to play_path(id: game_index, index: 0)
   end
@@ -42,6 +43,10 @@ class PlayController < ApplicationController
   end
 
   private
+
+  def update_learning(words)
+    words.each { |word| word.increment!(:learning_count) }
+  end
 
   def start_game(words)
     History.create!(

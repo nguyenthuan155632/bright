@@ -13,6 +13,15 @@
  */
 
 @import "bootstrap";
+@import "simplemde.min";
+
+body {
+  position: relative;
+}
+
+label {
+  font-weight: 600;
+}
 
 .navbar {
   margin-bottom: 40px;
@@ -59,4 +68,23 @@
   text-align: center;
   font-size: 40px;
   font-weight: 600;
+}
+
+.create-new-word {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #bf3131;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  a {
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -55%);
+    font-size: 40px;
+    text-decoration: none;
+  }
 }

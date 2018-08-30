@@ -11,42 +11,46 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :english %>
-    <%= form.text_field :english %>
+    <%= form.text_field :english, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :vietnamese_unsigned %>
-    <%= form.text_field :vietnamese_unsigned %>
+    <%= form.text_field :vietnamese_unsigned, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :vietnamese %>
-    <%= form.text_field :vietnamese %>
+    <%= form.text_field :vietnamese, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :category_id %>
-    <%= form.select :category_ids, Category.all.collect { |x| [x.name, x.id] }, {}, multiple: true %>
+    <%= form.select :category_ids, Category.all.collect { |x| [x.name, x.id] }, {}, multiple: true, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :description %>
-    <%= form.text_area :description %>
+    <%= form.text_area :description, class: 'form-control simplemde', rows: 6 %>
   </div>
 
-  <div class="field">
+  <div class="form-group" style="display: <%= action_name == 'edit' ? 'block' : 'none' %>;">
     <%= form.label :learning_count %>
-    <%= form.number_field :learning_count %>
+    <%= form.number_field :learning_count, class: 'form-control', disabled: true %>
   </div>
 
-  <div class="field">
+  <div class="form-group" style="display: <%= action_name == 'edit' ? 'block' : 'none' %>;">
     <%= form.label :learning_speed %>
-    <%= form.number_field :learning_speed %>
+    <%= form.number_field :learning_speed, class: 'form-control', disabled: true %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="form-group">
+    <%= form.submit class: 'btn btn-primary' %>
   </div>
 <% end %>
+
+<script type="text/javascript">
+  var simplemde = new SimpleMDE({element: $('.simplemde')[0]});
+</script>

@@ -21,8 +21,16 @@
 </p>
 
 <p>
+  <strong>References:</strong>
+  <span><%= link_to 'Laban', "https://dict.laban.vn/find?type=1&query=#{@dictionary.english.split(' ').join('+')}", class: 'btn btn-default', target: '_blank' %></span>
+  <span><%= link_to 'Google', "https://translate.google.com.vn/m/translate?hl=vi#view=home&op=translate&sl=en&tl=vi&text=#{@dictionary.english}", class: 'btn btn-default', target: '_blank' %></span>
+</p>
+
+<p>
   <strong>Description:</strong>
-  <%= @dictionary.description %>
+  <div style="box-shadow: 2px 2px 2px 2px; padding: 40px;">
+    <%= markdown(@dictionary.description) %>
+  </div>
 </p>
 
 <p>
@@ -37,3 +45,8 @@
 
 <%= link_to 'Edit', edit_dictionary_path(@dictionary) %> |
 <%= link_to 'Back', dictionaries_path %>
+<br>
+<br>
+<br>
+<br>
+<br>

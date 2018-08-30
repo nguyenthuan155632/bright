@@ -5,7 +5,6 @@
       <th>Vietnamese unsigned</th>
       <th>Vietnamese</th>
       <th>Categories</th>
-      <th>Description</th>
       <th>Learning count</th>
       <th>Learning speed</th>
       <th colspan="2">Lookup</th>
@@ -20,14 +19,13 @@
         <td><%= dictionary.vietnamese_unsigned %></td>
         <td><%= dictionary.vietnamese %></td>
         <td><%= dictionary.categories.pluck(:name).join(', ') %></td>
-        <td><%= dictionary.description %></td>
         <td><%= dictionary.learning_count %></td>
         <td><%= dictionary.learning_speed %></td>
-        <td><%= link_to 'Laban', "https://dict.laban.vn/find?type=1&query=#{dictionary.english.split(' ').join('+')}", target: '_blank' %></td>
-        <td><%= link_to 'Google', "https://translate.google.com.vn/m/translate?hl=vi#view=home&op=translate&sl=en&tl=vi&text=#{dictionary.english}", target: '_blank' %></td>
-        <td><%= link_to 'Show', dictionary %></td>
-        <td><%= link_to 'Edit', edit_dictionary_path(dictionary) %></td>
-        <td><%= link_to 'Destroy', dictionary, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Laban', "https://dict.laban.vn/find?type=1&query=#{dictionary.english.split(' ').join('+')}", class: 'btn btn-default', target: '_blank' %></td>
+        <td><%= link_to 'Google', "https://translate.google.com.vn/m/translate?hl=vi#view=home&op=translate&sl=en&tl=vi&text=#{dictionary.english}", class: 'btn btn-default', target: '_blank' %></td>
+        <td><%= link_to 'Show', dictionary, class: 'btn btn-success' %></td>
+        <td><%= link_to 'Edit', edit_dictionary_path(dictionary), class: 'btn btn-warning' %></td>
+        <td><%= link_to 'Destroy', dictionary, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
       </tr>
     <% end %>
   </tbody>
