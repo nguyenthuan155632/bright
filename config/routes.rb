@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   		get 'search'
   	end
   end
+  resources :histories, only: [:index]
   resources :categories
   resources :play, only: [:show] do
   	collection do
