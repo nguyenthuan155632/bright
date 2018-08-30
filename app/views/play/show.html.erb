@@ -1,0 +1,57 @@
+<div class="game-wrapper text-center" style="margin-top: 100px;" data-id="<%= @scene.id %>" data-index="<%= @index %>" data-numeric="<%= @scene.numeric %>">
+  <div class="source-word">
+    <span><%= @source_word %></span>
+  </div>
+  <div class="destination-word" data-word="<%= @destination_word %>">
+    <div class="form-group">
+      <input type="text" class="form-control" name="destination-word-input" id="destination-word-input" onkeypress="return AddKeyPress(event);">
+      <input type="button" name="submit-answer" id="submit-answer" value="Answer" class="btn btn-primary">
+    </div>
+  </div>
+  <div class="check-word">
+    <span><%= @destination_word %></span>
+  </div>
+</div>
+
+<script type="text/javascript">
+  function AddKeyPress(e) { 
+    e = e || window.event;
+    if (e.keyCode == 13) {
+      $('#submit-answer').trigger('click');
+      return false;
+    }
+    return true;
+  }
+
+  function next_word() {
+    if(parseInt($('.game-wrapper').data('index')) === parseInt($('.game-wrapper').data('numeric')) - 1) {
+      setTimeout(function() {
+        window.location.href = `/play/score?scene=${$('.game-wrapper').data('id')}`;
+      }, 1500);
+      return false;
+    }
+    setTimeout(function() {
+      window.location.href = `/play/${$('.game-wrapper').data('id')}?index=${$('.game-wrapper').data('index') + 1}`;
+    }, 1500);
+  }
+
+  $(document).ready(function() {
+    $('#destination-word-input').focus();
+
+    $('#submit-answer').one('click', function() {
+      var answer = $('#destination-word-input').val().trim();
+      if(!answer) return false;
+      result = $('.destination-word').data('word');
+      if(answer === result) {
+        $.get("/play/result", { status: true, scene: $('.game-wrapper').data('id'), index: $('.game-wrapper').data('index') });
+        $('.check-word').show();
+        next_word();
+        return false;
+      }
+      $('.check-word').css('color', '#b12323');
+      $('.check-word').show();
+      $.get("/play/result", { status: false, scene: $('.game-wrapper').data('id'), index: $('.game-wrapper').data('index') });
+      next_word();
+    })
+  });
+</script>

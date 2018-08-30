@@ -17,3 +17,45 @@
 .navbar {
   margin-bottom: 40px;
 }
+
+.source-word {
+  width: 50%;
+  height: 200px;
+  margin: 0 auto;
+  font-size: 60px;
+  font-weight: bold;
+  color: darkslategrey;
+  border: 1px solid #888;
+  border-radius: 8px;
+  position: relative;
+  span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 70px;
+  }
+}
+
+.destination-word {
+  margin-top: 30px;
+  input[type="text"] {
+    width: 50%;
+    margin: 0 auto;
+  }
+  input[type="button"] {
+    margin-top: 10px;
+  }
+}
+
+.check-word {
+  font-size: 30px;
+  color: #23b134;
+  display: none;
+}
+
+.score-wrapper {
+  text-align: center;
+  font-size: 40px;
+  font-weight: 600;
+}

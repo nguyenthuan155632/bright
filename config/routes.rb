@@ -5,7 +5,13 @@ Rails.application.routes.draw do
   	end
   end
   resources :categories
-  get 'play/options', to: 'play#options'
-  get 'play/game', to: 'play#game'
+  resources :play, only: [:show] do
+  	collection do
+      get :options
+  	  get :game
+      get :result
+      get :score
+  	end
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

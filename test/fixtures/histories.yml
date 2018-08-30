@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  words: MyString
+  dict_type: MyString
+  categories: MyString
+  numeric: 1
+  alphabet: MyString
+  finish_time: 
+  status: 1
+  score: 1
+  right_words: MyString
+  wrong_words: MyString
+
+two:
+  words: MyString
+  dict_type: MyString
+  categories: MyString
+  numeric: 1
+  alphabet: MyString
+  finish_time: 
+  status: 1
+  score: 1
+  right_words: MyString
+  wrong_words: MyString

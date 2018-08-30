@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_29_142141) do
+ActiveRecord::Schema.define(version: 2018_08_30_145908) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -36,6 +36,21 @@ ActiveRecord::Schema.define(version: 2018_08_29_142141) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_dictionaries_on_category_id"
+  end
+
+  create_table "histories", force: :cascade do |t|
+    t.string "words"
+    t.string "dict_type"
+    t.string "categories"
+    t.integer "numeric"
+    t.string "alphabet"
+    t.integer "finish_time"
+    t.integer "status"
+    t.integer "score"
+    t.string "right_words"
+    t.string "wrong_words"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

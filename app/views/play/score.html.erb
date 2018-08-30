@@ -1,0 +1,14 @@
+<div class="score-wrapper">
+  <div id="score">
+    <%= @scene.score %>/<%= @scene.numeric %>
+  </div>
+  <div id="finish_time">
+    <%= @scene.finish_time %> (seconds)
+  </div>
+  <div id="status">
+    <%= @scene.status == 'started' ? 'unfinished' : 'finished' %>
+  </div>
+  <div id="restart">
+    <a href="/play/<%= @scene.id %>?index=0" class="btn btn-primary">Restart</a>
+  </div>
+</div>
