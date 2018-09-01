@@ -22,9 +22,17 @@
 
 <p>
   <strong>References:</strong>
-  <span><%= link_to 'Laban', "https://dict.laban.vn/find?type=1&query=#{@dictionary.english.split(' ').join('+')}", class: 'btn btn-default', target: '_blank' %></span>
-  <span><%= link_to 'Google', "https://translate.google.com.vn/m/translate?hl=vi#view=home&op=translate&sl=en&tl=vi&text=#{@dictionary.english}", class: 'btn btn-default', target: '_blank' %></span>
-  <span><button class="speak btn btn-default" data-mp3='<%= audio("https://www.vocabulary.com/dictionary/#{@dictionary.english}") %>' style="font-size: 20px;"><%= fa_icon 'volume-up' %></button></span>
+  <span><%= link_to 'Laban', "https://dict.laban.vn/find?type=1&query=#{@dictionary.english.split(' ').join('+')}", class: 'btn btn-default references', target: '_blank' %></span>
+  <span><%= link_to 'Soha', "http://tratu.soha.vn/dict/en_vn/#{@dictionary.english.split(' ').join('_')}", class: 'btn btn-default references', target: '_blank' %></span>
+  <span><%= link_to 'Tracau', "https://tracau.vn/?s=#{@dictionary.english.split(' ').join('%20')}", class: 'btn btn-default references', target: '_blank' %></span>
+  <span><%= link_to 'Google', "https://translate.google.com.vn/m/translate?hl=vi#view=home&op=translate&sl=en&tl=vi&text=#{@dictionary.english}", class: 'btn btn-default references', target: '_blank' %></span>
+  <span>
+    <audio preload="none">
+      <source class="mp3" src='<%= audio("https://www.vocabulary.com/dictionary/#{@dictionary.english}") %>' />
+    </audio>
+    <button class="speak btn btn-default" data-mp3='<%= audio("https://www.vocabulary.com/dictionary/#{@dictionary.english}") %>' style="font-size: 20px;"><%= fa_icon 'volume-up' %></button>
+    <a href="https://www.vocabulary.com/dictionary/<%= @dictionary.english %>" target="_blank" class="text-danger" style="display: none;">Retry!</a>
+  </span>
 </p>
 
 <p>

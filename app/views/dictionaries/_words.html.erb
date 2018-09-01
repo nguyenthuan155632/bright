@@ -2,12 +2,10 @@
   <thead>
     <tr>
       <th>English</th>
-      <th>Vietnamese unsigned</th>
       <th>Vietnamese</th>
       <th>Categories</th>
       <th>Learning count</th>
-      <th>Learning speed</th>
-      <th colspan="2">Lookup</th>
+      <th colspan="4">Lookup</th>
       <th>Speak</th>
       <th colspan="3">Actions</th>
     </tr>
@@ -17,14 +15,20 @@
     <% @dictionaries.each do |dictionary| %>
       <tr>
         <td><%= dictionary.english %></td>
-        <td><%= dictionary.vietnamese_unsigned %></td>
         <td><%= dictionary.vietnamese %></td>
         <td><%= dictionary.categories.pluck(:name).join(', ') %></td>
         <td><%= dictionary.learning_count %></td>
-        <td><%= dictionary.learning_speed %></td>
-        <td><%= link_to 'Laban', "https://dict.laban.vn/find?type=1&query=#{dictionary.english.split(' ').join('+')}", class: 'btn btn-default', target: '_blank' %></td>
-        <td><%= link_to 'Google', "https://translate.google.com.vn/m/translate?hl=vi#view=home&op=translate&sl=en&tl=vi&text=#{dictionary.english}", class: 'btn btn-default', target: '_blank' %></td>
-        <td><button class="speak btn btn-default" data-mp3='<%= audio("https://www.vocabulary.com/dictionary/#{dictionary.english}") %>' style="font-size: 20px;"><%= fa_icon 'volume-up' %></button></td>
+        <td><%= link_to 'Laban', "https://dict.laban.vn/find?type=1&query=#{dictionary.english.split(' ').join('+')}", class: 'btn btn-default references', target: '_blank' %></td>
+        <td><%= link_to 'Soha', "http://tratu.soha.vn/dict/en_vn/#{dictionary.english.split(' ').join('_')}", class: 'btn btn-default references', target: '_blank' %></td>
+        <td><%= link_to 'Tracau', "https://tracau.vn/?s=#{dictionary.english.split(' ').join('%20')}", class: 'btn btn-default references', target: '_blank' %></td>
+        <td><%= link_to 'Google', "https://translate.google.com.vn/m/translate?hl=vi#view=home&op=translate&sl=en&tl=vi&text=#{dictionary.english}", class: 'btn btn-default references', target: '_blank' %></td>
+        <td class="text-center">
+          <audio preload="none">
+            <source class="mp3" src='<%= audio("https://www.vocabulary.com/dictionary/#{dictionary.english}") %>' />
+          </audio>
+          <button class="speak btn btn-default" data-mp3='<%= audio("https://www.vocabulary.com/dictionary/#{dictionary.english}") %>' style="font-size: 20px; border: 1px solid #ccc; border-radius: 50%;"><%= fa_icon 'volume-up' %></button>
+          <a href="https://www.vocabulary.com/dictionary/<%= dictionary.english %>" target="_blank" class="text-danger" style="display: none;">Retry!</a>
+        </td>
         <td><%= link_to 'Show', dictionary, class: 'btn btn-success' %></td>
         <td><%= link_to 'Edit', edit_dictionary_path(dictionary), class: 'btn btn-warning' %></td>
         <td><%= link_to 'Destroy', dictionary, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>

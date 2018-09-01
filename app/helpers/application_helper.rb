@@ -1,4 +1,5 @@
 require 'open-uri'
+require 'uri'
 
 module ApplicationHelper
   def paginate objects, options = {}
@@ -28,8 +29,9 @@ module ApplicationHelper
   end
 
   def audio(url)
+    url = URI.encode(url)
     "https://audio.vocab.com/1.0/us/#{Nokogiri::HTML(open(url)).xpath('//a/@data-audio').first.value}.mp3"
   rescue StandardError
-    true
+    # redirect_to 'https://www.vocabulary.com/dictionary/airbag'
   end
 end

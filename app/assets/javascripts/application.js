@@ -77,7 +77,15 @@ $(document).ready(function(){
   }
 
   $('.speak').on('click', function() {
-    var mp3_url = new Audio($(this).data('mp3'));
-    mp3_url.play();
+    try {
+      var mp3_url = new Audio($(this).data('mp3'));
+      mp3_url.play();
+    } catch(err) {
+      alert(error);
+    }
+  });
+
+  $("source.mp3").on("error", function (event) {
+    $(this).closest('td, span').find('a').show();
   });
 });
