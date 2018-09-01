@@ -8,6 +8,7 @@
       <th>Learning count</th>
       <th>Learning speed</th>
       <th colspan="2">Lookup</th>
+      <th>Speak</th>
       <th colspan="3">Actions</th>
     </tr>
   </thead>
@@ -23,6 +24,7 @@
         <td><%= dictionary.learning_speed %></td>
         <td><%= link_to 'Laban', "https://dict.laban.vn/find?type=1&query=#{dictionary.english.split(' ').join('+')}", class: 'btn btn-default', target: '_blank' %></td>
         <td><%= link_to 'Google', "https://translate.google.com.vn/m/translate?hl=vi#view=home&op=translate&sl=en&tl=vi&text=#{dictionary.english}", class: 'btn btn-default', target: '_blank' %></td>
+        <td><button class="speak btn btn-default" data-mp3='<%= audio("https://www.vocabulary.com/dictionary/#{dictionary.english}") %>' style="font-size: 20px;"><%= fa_icon 'volume-up' %></button></td>
         <td><%= link_to 'Show', dictionary, class: 'btn btn-success' %></td>
         <td><%= link_to 'Edit', edit_dictionary_path(dictionary), class: 'btn btn-warning' %></td>
         <td><%= link_to 'Destroy', dictionary, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>

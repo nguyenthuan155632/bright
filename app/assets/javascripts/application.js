@@ -75,4 +75,9 @@ $(document).ready(function(){
   if(findGetParameter('word')) {
     $('#search-input').val(findGetParameter('word'));
   }
+
+  $('.speak').on('click', function() {
+    var mp3_url = new Audio($(this).data('mp3'));
+    mp3_url.play();
+  });
 });

@@ -1,3 +1,5 @@
+require 'open-uri'
+
 module ApplicationHelper
   def paginate objects, options = {}
     options.reverse_merge!(theme: 'twitter-bootstrap-4')
@@ -23,5 +25,11 @@ module ApplicationHelper
     markdown = Redcarpet::Markdown.new(renderer, extensions)
 
     markdown.render(text).html_safe
+  end
+
+  def audio(url)
+    "https://audio.vocab.com/1.0/us/#{Nokogiri::HTML(open(url)).xpath('//a/@data-audio').first.value}.mp3"
+  rescue StandardError
+    true
   end
 end

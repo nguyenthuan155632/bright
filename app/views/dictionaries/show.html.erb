@@ -24,6 +24,7 @@
   <strong>References:</strong>
   <span><%= link_to 'Laban', "https://dict.laban.vn/find?type=1&query=#{@dictionary.english.split(' ').join('+')}", class: 'btn btn-default', target: '_blank' %></span>
   <span><%= link_to 'Google', "https://translate.google.com.vn/m/translate?hl=vi#view=home&op=translate&sl=en&tl=vi&text=#{@dictionary.english}", class: 'btn btn-default', target: '_blank' %></span>
+  <span><button class="speak btn btn-default" data-mp3='<%= audio("https://www.vocabulary.com/dictionary/#{@dictionary.english}") %>' style="font-size: 20px;"><%= fa_icon 'volume-up' %></button></span>
 </p>
 
 <p>

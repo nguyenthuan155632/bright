@@ -42,6 +42,8 @@ gem 'kaminari'
 gem 'bootstrap4-kaminari-views'
 gem 'simplemde-rails'
 gem 'redcarpet', '~> 3.0.0'
+gem 'nokogiri'
+gem "font-awesome-rails"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
