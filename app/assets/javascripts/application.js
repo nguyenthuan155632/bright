@@ -86,6 +86,20 @@ $(document).ready(function(){
   });
 
   $("source.mp3").on("error", function (event) {
-    $(this).closest('td, span').find('a').show();
+    $(this).closest('td, span').find('.speak-on-vocabulary').show();
   });
+
+  if(window.location.pathname == '/dictionaries') {
+    $('a[href="/dictionaries"]').addClass('active');
+  } else if(window.location.pathname == '/categories') {
+    $('a[href="/categories"]').addClass('active');
+  } else if(window.location.pathname == '/') {
+    $('a[href="/"]').addClass('active');
+  } else if(window.location.pathname == '/histories') {
+    $('a[href="/histories"]').addClass('active');
+  } else if(window.location.pathname == '/dictionaries/new') {
+    $('a[href="/dictionaries/new"]').addClass('active');
+  } else if(window.location.pathname == '/play/options') {
+    $('a[href="/play/options"]').addClass('active');
+  }
 });

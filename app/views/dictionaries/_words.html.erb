@@ -4,9 +4,9 @@
       <th>English</th>
       <th>Vietnamese</th>
       <th>Categories</th>
-      <th>Learning count</th>
+      <th>Learned</th>
       <th colspan="4">Lookup</th>
-      <th>Speak</th>
+      <th class="text-center">Speak</th>
       <th colspan="3">Actions</th>
     </tr>
   </thead>
@@ -23,11 +23,18 @@
         <td><%= link_to 'Tracau', "https://tracau.vn/?s=#{dictionary.english.split(' ').join('%20')}", class: 'btn btn-default references', target: '_blank' %></td>
         <td><%= link_to 'Google', "https://translate.google.com.vn/m/translate?hl=vi#view=home&op=translate&sl=en&tl=vi&text=#{dictionary.english}", class: 'btn btn-default references', target: '_blank' %></td>
         <td class="text-center">
-          <audio preload="none">
-            <source class="mp3" src='<%= audio("https://www.vocabulary.com/dictionary/#{dictionary.english}") %>' />
-          </audio>
-          <button class="speak btn btn-default" data-mp3='<%= audio("https://www.vocabulary.com/dictionary/#{dictionary.english}") %>' style="font-size: 20px; border: 1px solid #ccc; border-radius: 50%;"><%= fa_icon 'volume-up' %></button>
-          <a href="https://www.vocabulary.com/dictionary/<%= dictionary.english %>" target="_blank" class="text-danger" style="display: none;">Retry!</a>
+          <div style="width: 100px;">
+            <audio preload="none">
+              <source class="mp3" src='<%= audio("https://www.vocabulary.com/dictionary/#{dictionary.english}") %>' />
+            </audio>
+            <button class="speak btn btn-default" data-mp3='<%= audio("https://www.vocabulary.com/dictionary/#{dictionary.english}") %>' style="font-size: 20px; border: 1px solid #ccc; border-radius: 50%;"><%= fa_icon 'volume-up' %></button>
+            <br>
+            <span class="speak-on-vocabulary" style="display: none;">
+              <%= fa_icon 'arrow-right', style: 'color: #dc3545; font-size: 12px;' %>
+              <a href="https://www.vocabulary.com/dictionary/<%= dictionary.english %>" target="_blank" class="text-danger" style="font-size: 12px;">RETRY!</a>
+              <%= fa_icon 'arrow-left', style: 'color: #dc3545; font-size: 12px;' %>
+            </span>
+          </div>
         </td>
         <td><%= link_to 'Show', dictionary, class: 'btn btn-success' %></td>
         <td><%= link_to 'Edit', edit_dictionary_path(dictionary), class: 'btn btn-warning' %></td>

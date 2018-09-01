@@ -27,8 +27,13 @@
   </div>
 
   <div class="form-group">
-    <%= form.label :category_id %>
+    <%= form.label :category_id, 'Categories' %>
     <%= form.select :category_ids, Category.all.collect { |x| [x.name, x.id] }, {}, multiple: true, class: 'form-control' %>
+  </div>
+
+  <div class="form-group" style="display: <%= action_name == 'edit' ? 'block' : 'none' %>;">
+    <%= form.label :learning_count, 'Learned' %>
+    <%= form.number_field :learning_count, class: 'form-control', disabled: true %>
   </div>
 
   <div class="form-group">
@@ -36,18 +41,8 @@
     <%= form.text_area :description, class: 'form-control simplemde', rows: 6 %>
   </div>
 
-  <div class="form-group" style="display: <%= action_name == 'edit' ? 'block' : 'none' %>;">
-    <%= form.label :learning_count %>
-    <%= form.number_field :learning_count, class: 'form-control', disabled: true %>
-  </div>
-
-  <div class="form-group" style="display: <%= action_name == 'edit' ? 'block' : 'none' %>;">
-    <%= form.label :learning_speed %>
-    <%= form.number_field :learning_speed, class: 'form-control', disabled: true %>
-  </div>
-
   <div class="form-group">
-    <%= form.submit class: 'btn btn-primary' %>
+    <%= form.submit action_name == 'edit' ? 'Update This Word' : 'Create A New Word', class: 'btn btn-primary' %>
   </div>
 <% end %>
 

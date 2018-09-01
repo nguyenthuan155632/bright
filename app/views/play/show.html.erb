@@ -2,7 +2,10 @@
   <div class="source-word">
     <span><%= @source_word %></span>
   </div>
-  <div class="destination-word" data-word="<%= @destination_word %>">
+  <div style="margin-top: 15px;">
+    <button class="speak btn btn-default" data-mp3='<%= audio("https://www.vocabulary.com/dictionary/#{@source_word}") %>' style="font-size: 20px; border: 1px solid #ccc; border-radius: 50%;"><%= fa_icon 'volume-up' %></button>
+  </div>
+  <div class="destination-word" data-word="<%= @destination_word %>" style="margin-top: 15px;">
     <div class="form-group">
       <input type="text" class="form-control" name="destination-word-input" id="destination-word-input" onkeypress="return AddKeyPress(event);">
       <input type="button" name="submit-answer" id="submit-answer" value="Answer" class="btn btn-primary">
@@ -38,7 +41,7 @@
   $(document).ready(function() {
     $('#destination-word-input').focus();
 
-    $('#submit-answer').one('click', function() {
+    $('#submit-answer').on('click', function() {
       var answer = $('#destination-word-input').val().trim();
       if(!answer) return false;
       result = $('.destination-word').data('word');

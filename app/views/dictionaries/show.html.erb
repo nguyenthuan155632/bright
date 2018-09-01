@@ -21,35 +21,38 @@
 </p>
 
 <p>
+  <strong>Learned:</strong>
+  <%= @dictionary.learning_count %>
+</p>
+
+<hr>
+
+<p>
   <strong>References:</strong>
   <span><%= link_to 'Laban', "https://dict.laban.vn/find?type=1&query=#{@dictionary.english.split(' ').join('+')}", class: 'btn btn-default references', target: '_blank' %></span>
   <span><%= link_to 'Soha', "http://tratu.soha.vn/dict/en_vn/#{@dictionary.english.split(' ').join('_')}", class: 'btn btn-default references', target: '_blank' %></span>
   <span><%= link_to 'Tracau', "https://tracau.vn/?s=#{@dictionary.english.split(' ').join('%20')}", class: 'btn btn-default references', target: '_blank' %></span>
   <span><%= link_to 'Google', "https://translate.google.com.vn/m/translate?hl=vi#view=home&op=translate&sl=en&tl=vi&text=#{@dictionary.english}", class: 'btn btn-default references', target: '_blank' %></span>
-  <span>
+  (<span>
     <audio preload="none">
       <source class="mp3" src='<%= audio("https://www.vocabulary.com/dictionary/#{@dictionary.english}") %>' />
     </audio>
     <button class="speak btn btn-default" data-mp3='<%= audio("https://www.vocabulary.com/dictionary/#{@dictionary.english}") %>' style="font-size: 20px;"><%= fa_icon 'volume-up' %></button>
-    <a href="https://www.vocabulary.com/dictionary/<%= @dictionary.english %>" target="_blank" class="text-danger" style="display: none;">Retry!</a>
-  </span>
+    <span class="speak-on-vocabulary" style="display: none;">
+      <%= fa_icon 'arrow-right', style: 'color: #dc3545;' %>
+      <a href="https://www.vocabulary.com/dictionary/<%= @dictionary.english %>" target="_blank" class="text-danger">RETRY!</a>
+      <%= fa_icon 'arrow-left', style: 'color: #dc3545;' %>
+    </span>
+  </span>&nbsp;&nbsp;&nbsp;)
 </p>
+
+<hr>
 
 <p>
   <strong>Description:</strong>
   <div style="box-shadow: 2px 2px 2px 2px; padding: 40px;">
     <%= markdown(@dictionary.description) %>
   </div>
-</p>
-
-<p>
-  <strong>Learning count:</strong>
-  <%= @dictionary.learning_count %>
-</p>
-
-<p>
-  <strong>Learning speed:</strong>
-  <%= @dictionary.learning_speed %>
 </p>
 
 <%= link_to 'Edit', edit_dictionary_path(@dictionary) %> |
