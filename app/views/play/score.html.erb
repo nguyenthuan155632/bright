@@ -16,8 +16,8 @@
     <div class="col-sm-6" style="color: #23b134;">
       <strong>Right Words</strong> <br>
       <ul style="list-style: none; padding: 0;">
-        <% Dictionary.where('id IN (?)', @scene.right_words ? @scene.right_words.split(',').map(&:to_i) : []).pluck(:english).each do |a| %>
-          <li><%= a %></li>
+        <% Dictionary.where('id IN (?)', @scene.right_words ? @scene.right_words.split(',').map(&:to_i) : []).pluck(:english, :vietnamese).each do |en, vi| %>
+          <li><%= en %> - <%= vi %></li>
         <% end %>
       </ul>
     </div>

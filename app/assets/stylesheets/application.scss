@@ -30,7 +30,15 @@ table tr td {
 }
 
 .navbar {
-  margin-bottom: 40px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.app-wrapper {
+  margin-top: 80px;
 }
 
 .source-word {
@@ -98,4 +106,14 @@ table tr td {
 a.references {
   padding-left: 0;
   padding-right: 0;
+}
+
+@media only screen and (max-width: 992px) {
+  .navbar {
+    text-align: center;
+  }
+
+  .search-box {
+    display: block;
+  }
 }
