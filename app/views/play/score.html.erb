@@ -5,6 +5,9 @@
   <div id="finish_time">
     Finished in: <%= @scene.finish_time %> (seconds)
   </div>
+  <div id="average">
+    Average: <%= @scene.finish_time / @scene.numeric.to_f %> (seconds/word)
+  </div>
   <div id="status">
     Status: <%= @scene.status == 'started' ? 'unfinished' : 'finished' %>
   </div>

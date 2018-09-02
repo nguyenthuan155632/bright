@@ -44,6 +44,7 @@ gem 'simplemde-rails'
 gem 'redcarpet', '~> 3.0.0'
 gem 'nokogiri'
 gem "font-awesome-rails"
+gem 'kaminari'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

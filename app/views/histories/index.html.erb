@@ -13,6 +13,7 @@
       <th>Finish Time</th>
       <th>Status</th>
       <th>Score</th>
+      <th>Average</th>
       <th>Right Words</th>
       <th>Wrong Words</th>
     </tr>
@@ -29,6 +30,7 @@
         <td><%= history.finish_time %> (s)</td>
         <td><%= history.status.capitalize %></td>
         <td><%= history.score %>/<%= history.numeric %></td>
+        <td><%= history.finish_time / history.numeric.to_f %></td>
         <td><%= Dictionary.where('id IN (?)', history.right_words ? history.right_words.split(',').map(&:to_i) : []).pluck(:english).join(', ') %></td>
         <td><%= Dictionary.where('id IN (?)', history.wrong_words ? history.wrong_words.split(',').map(&:to_i) : []).pluck(:english).join(', ') %></td>
       </tr>

@@ -14,7 +14,7 @@
   <tbody>
     <% @dictionaries.each do |dictionary| %>
       <tr>
-        <td><%= dictionary.english %></td>
+        <td><%= link_to dictionary.english, dictionary %></td>
         <td><%= dictionary.vietnamese %></td>
         <td><%= dictionary.categories.pluck(:name).join(', ') %></td>
         <td><%= dictionary.learning_count %></td>

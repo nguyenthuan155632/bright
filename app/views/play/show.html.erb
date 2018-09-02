@@ -3,7 +3,7 @@
     <span><%= @source_word %></span>
   </div>
   <div style="margin-top: 15px;">
-    <button class="speak btn btn-default" data-mp3='<%= audio("https://www.vocabulary.com/dictionary/#{@source_word}") %>' style="font-size: 20px; border: 1px solid #ccc; border-radius: 50%;"><%= fa_icon 'volume-up' %></button>
+    <button class="speak btn btn-default" data-mp3='<%= audio("https://www.vocabulary.com/dictionary/#{@scene.dict_type == 'en-vi' ? @source_word : @destination_word}") %>' style="font-size: 20px; border: 1px solid #ccc; border-radius: 50%;"><%= fa_icon 'volume-up' %></button>
   </div>
   <div class="destination-word" data-word="<%= @destination_word %>" style="margin-top: 15px;">
     <div class="form-group">
