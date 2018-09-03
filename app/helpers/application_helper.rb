@@ -34,4 +34,10 @@ module ApplicationHelper
   rescue StandardError
     # redirect_to 'https://www.vocabulary.com/dictionary/airbag'
   end
+
+  def image(word)
+    url = URI.encode("https://www.bing.com/images/search?q=#{word}")
+    doc = Nokogiri::HTML(open(url))
+    doc.css('div#b_content img').map { |img| img.attr('src') }.second
+  end
 end

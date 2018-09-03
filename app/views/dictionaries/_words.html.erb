@@ -1,10 +1,11 @@
 <table class="table table-hover table-responsive">
   <thead>
     <tr>
-      <th>English</th>
-      <th>Vietnamese</th>
+      <th>Image</th>
+      <th><%= sort_link(@q, :english, 'English') %></th>
+      <th><%= sort_link(@q, :english, 'Vietnamese') %></th>
       <th>Categories</th>
-      <th>Learned</th>
+      <th><%= sort_link(@q, :learning_count, 'Learned') %></th>
       <th colspan="4">Lookup</th>
       <th class="text-center">Speak</th>
       <th colspan="3">Actions</th>
@@ -14,6 +15,9 @@
   <tbody>
     <% @dictionaries.each do |dictionary| %>
       <tr>
+        <td>
+          <img src="<%= image(dictionary.english) %>" width="150" />
+        </td>
         <td><%= link_to dictionary.english, dictionary %></td>
         <td><%= dictionary.vietnamese %></td>
         <td><%= dictionary.categories.pluck(:name).join(', ') %></td>

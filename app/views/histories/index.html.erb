@@ -22,16 +22,16 @@
   <tbody>
     <% @histories.each do |history| %>
       <tr>
-        <td><%= Dictionary.where('id IN (?)', history.words ? history.words.split(',').map(&:to_i) : []).pluck(:english).join(', ') %></td>
-        <td><%= history.dict_type == 'en-vi' ? 'English - Vietnamese' : 'Vietnamese - English' %></td>
+        <td><%= Dictionary.where('id IN (?)', history.words ? history.words.split(',').map(&:to_i) : []).pluck(:english).join(', ')[0, 100] %>...</td>
+        <td><%= history.dict_type == 'en-vi' ? 'En - Vi' : 'Vi - En' %></td>
         <td><%= history.categories %></td>
         <td><%= history.numeric %></td>
         <td><%= history.alphabet.split('-').map(&:upcase).join(' - ') %></td>
         <td><%= history.finish_time %> (s)</td>
         <td><%= history.status.capitalize %></td>
         <td><%= history.score %>/<%= history.numeric %></td>
-        <td><%= history.finish_time / history.numeric.to_f %></td>
-        <td><%= Dictionary.where('id IN (?)', history.right_words ? history.right_words.split(',').map(&:to_i) : []).pluck(:english).join(', ') %></td>
+        <td><%= (history.finish_time / history.numeric.to_f).round(2) %></td>
+        <td><%= Dictionary.where('id IN (?)', history.right_words ? history.right_words.split(',').map(&:to_i) : []).pluck(:english).join(', ')[0, 100] %>...</td>
         <td><%= Dictionary.where('id IN (?)', history.wrong_words ? history.wrong_words.split(',').map(&:to_i) : []).pluck(:english).join(', ') %></td>
       </tr>
     <% end %>
