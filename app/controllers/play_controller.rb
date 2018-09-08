@@ -8,7 +8,8 @@ class PlayController < ApplicationController
     @words = Dictionary.includes(:categories)
                        .where(categories: { name: strong_params[:categories].split(',') })
                        .where(alphabet_query)
-                       .order(Arel.sql('RANDOM()'))[0, strong_params[:numeric].to_i]
+                       .order(strong_params[:style] == 'random' ? Arel.sql('RANDOM()') : 'dictionaries.id DESC')[0, strong_params[:numeric].to_i]
+                       .shuffle
     update_learning(@words)
     game_index = start_game(@words)
     redirect_to play_path(id: game_index, index: 0)
@@ -78,6 +79,6 @@ class PlayController < ApplicationController
   end
 
   def strong_params
-    params.permit(:dictionary, :categories, :alphabet, :numeric)
+    params.permit(:dictionary, :categories, :alphabet, :numeric, :style)
   end
 end

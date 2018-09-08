@@ -18,7 +18,7 @@
 //= require simplemde.min
 //= require_tree .
 
-var game_url = { dictionary: 'en-vi', categories: 'Noun,Adjective,Verb,Adverb,Noun Phrase', numeric: '20', alphabet: 'all' };
+var game_url = { dictionary: 'en-vi', categories: 'Noun,Adjective,Verb,Adverb,Noun Phrase', numeric: '20', alphabet: 'all', style: 'random' };
 
 var host = function() {
   var protocol = location.protocol;
@@ -62,6 +62,9 @@ $(document).ready(function(){
   });
   $("input[name='alphabet']").on('change', function() {
     change_param('alphabet', $(this).val());
+  });
+  $("input[name='style']").on('change', function() {
+    change_param('style', $(this).val());
   });
 
   $('#start-game').on('click', function() {
