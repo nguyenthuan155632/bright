@@ -5,10 +5,7 @@ class PlayController < ApplicationController
   end
 
   def game
-    @words = Dictionary.includes(:categories)
-                       .where(categories: { name: strong_params[:categories].split(',') })
-                       .where(alphabet_query)
-                       .order(strong_params[:style] == 'random' ? Arel.sql('RANDOM()') : 'dictionaries.id DESC')[0, strong_params[:numeric].to_i]
+    @words = Dictionary.order(strong_params[:style] == 'random' ? Arel.sql('RANDOM()') : 'dictionaries.id DESC')[0, strong_params[:numeric].to_i]
                        .shuffle
     update_learning(@words)
     game_index = start_game(@words)
@@ -53,24 +50,11 @@ class PlayController < ApplicationController
     History.create!(
       words: words.map(&:id).join(','),
       dict_type: strong_params[:dictionary],
-      categories: strong_params[:categories],
       numeric: words.length,
-      alphabet: strong_params[:alphabet],
       finish_time: 0,
       status: :started,
       score: 0,
     )
-  end
-
-  def en_dict?
-    strong_params[:dictionary] == 'en-vi'
-  end
-
-  def alphabet_query
-    alphabet = [*(strong_params[:alphabet].split('-')[0]..strong_params[:alphabet].split('-')[1])]
-    alphabet.map do |ab|
-      "dictionaries.#{en_dict? ? 'english' : 'vietnamese_unsigned'} LIKE '#{ab}%'"
-    end.join(' OR ')
   end
 
   def customize_params
@@ -79,6 +63,6 @@ class PlayController < ApplicationController
   end
 
   def strong_params
-    params.permit(:dictionary, :categories, :alphabet, :numeric, :style)
+    params.permit(:dictionary, :numeric, :style)
   end
 end

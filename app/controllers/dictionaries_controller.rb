@@ -10,7 +10,7 @@ class DictionariesController < ApplicationController
 
   def search
     @q = Dictionary.search(params[:q])
-    @dictionaries = @q.result(distinct: true).includes(:categories).where('dictionaries.english LIKE ? OR dictionaries.vietnamese_unsigned LIKE ?', "%#{params[:word]}%", "%#{params[:word]}%")
+    @dictionaries = @q.result(distinct: true).includes(:categories).where('dictionaries.english LIKE ? OR dictionaries.vietnamese LIKE ?', "%#{params[:word]}%", "%#{params[:word]}%")
   end
 
   # GET /dictionaries/1
