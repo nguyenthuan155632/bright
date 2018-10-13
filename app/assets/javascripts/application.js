@@ -105,4 +105,6 @@ $(document).ready(function(){
   } else if(window.location.pathname == '/play/options') {
     $('a[href="/play/options"]').addClass('active');
   }
+
+  $('.source-word span').fitText(0.2, { minFontSize: '30px', maxFontSize: '50px' });
 });

@@ -5,8 +5,13 @@ class PlayController < ApplicationController
   end
 
   def game
-    @words = Dictionary.order(strong_params[:style] == 'random' ? Arel.sql('RANDOM()') : 'dictionaries.id DESC')[0, strong_params[:numeric].to_i]
-                       .shuffle
+    @words = if strong_params[:style] == 'random'
+      Dictionary.order(Arel.sql('RANDOM()'))[0, strong_params[:numeric].to_i]
+    elsif strong_params[:style] == 'newest'
+      Dictionary.order(id: :desc)[0, strong_params[:numeric].to_i].shuffle
+    elsif strong_params[:style] == 'least'
+      Dictionary.order(:learning_count)[0, strong_params[:numeric].to_i].shuffle
+    end
     update_learning(@words)
     game_index = start_game(@words)
     redirect_to play_path(id: game_index, index: 0)

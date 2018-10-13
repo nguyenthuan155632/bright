@@ -5,6 +5,7 @@ class DictionariesController < ApplicationController
   # GET /dictionaries.json
   def index
     @q = Dictionary.search(params[:q])
+    @count = Dictionary.count    
     @dictionaries = @q.result(distinct: true).includes(:categories).order(created_at: :desc).page(params[:page]).per(20)
   end
 
