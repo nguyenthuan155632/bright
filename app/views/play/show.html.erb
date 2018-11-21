@@ -44,7 +44,6 @@
 
     $('#submit-answer').on('click', function() {
       var answer = $('#destination-word-input').val().trim();
-      if(!answer) return false;
       result = $('.destination-word').data('word');
       if(answer === result) {
         $.get("/play/result", { status: true, scene: $('.game-wrapper').data('id'), index: $('.game-wrapper').data('index') });
