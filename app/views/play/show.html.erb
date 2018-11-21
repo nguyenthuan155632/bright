@@ -31,12 +31,12 @@
     if(parseInt($('.game-wrapper').data('index')) === parseInt($('.game-wrapper').data('numeric')) - 1) {
       setTimeout(function() {
         window.location.href = `/play/score?scene=${$('.game-wrapper').data('id')}`;
-      }, 1500);
+      }, 1000);
       return false;
     }
     setTimeout(function() {
       window.location.href = `/play/${$('.game-wrapper').data('id')}?index=${$('.game-wrapper').data('index') + 1}`;
-    }, 1500);
+    }, 1000);
   }
 
   $(document).ready(function() {
