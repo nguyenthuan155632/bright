@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class PlayController < ApplicationController
   before_action :customize_params, only: [:game]
 
@@ -24,6 +26,8 @@ class PlayController < ApplicationController
     @word = Dictionary.find(@scene.words.split(',')[params[:index].to_i].to_i)
     @source_word = @scene.dict_type == 'en-vi' ? @word.english : @word.vietnamese
     @destination_word = @scene.dict_type == 'en-vi' ? @word.vietnamese : @word.english
+
+    update_mp3_file_to_db(@word) unless @word.audio.attached?
   end
 
   def result
@@ -46,6 +50,30 @@ class PlayController < ApplicationController
   end
 
   private
+
+  def update_mp3_file_to_db(word)
+    url = generate_url(word.english)
+    file = download_file(url)
+    word.audio.attach(io: File.open(file), filename: word.english)
+  rescue StandardError
+  end
+
+  def generate_url(source)
+    "https://www.vocabulary.com/dictionary/#{source}"
+  end
+
+  def download_file(url)
+    file_path = Tempfile.new(["audio-#{Time.zone.now.strftime('%d%m%Y-%H%M%S')}", '.mp3'])
+    IO.copy_stream(open(download_mp3(url)), file_path)
+    file_path
+  end
+
+  def download_mp3(url)
+    url = URI.encode(url)
+    "https://audio.vocab.com/1.0/us/#{Nokogiri::HTML(open(url)).xpath('//a/@data-audio').first.value}.mp3"
+  rescue StandardError
+    # redirect_to 'https://www.vocabulary.com/dictionary/airbag'
+  end
 
   def update_learning(words)
     words.each { |word| word.increment!(:learning_count) }

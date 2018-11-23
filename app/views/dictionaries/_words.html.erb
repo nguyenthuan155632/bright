@@ -13,6 +13,7 @@
 
   <tbody>
     <% @dictionaries.each do |dictionary| %>
+      <%- mp3 = rails_blob_path(dictionary.audio, disposition: :attachment) if dictionary.audio.attached? %>
       <tr>
         <td><%= link_to dictionary.english, dictionary %></td>
         <td><%= dictionary.vietnamese %></td>
@@ -25,9 +26,9 @@
         <td class="text-center">
           <div style="width: 100px;">
             <audio preload="none">
-              <source class="mp3" src='<%= audio("https://www.vocabulary.com/dictionary/#{dictionary.english}") %>' />
+              <source class="mp3" src='<%= mp3 %>' />
             </audio>
-            <button class="speak btn btn-default" data-mp3='<%= audio("https://www.vocabulary.com/dictionary/#{dictionary.english}") %>' style="font-size: 20px; border: 1px solid #ccc; border-radius: 50%;"><%= fa_icon 'volume-up' %></button>
+            <button class="speak btn btn-default" data-mp3='<%= mp3 %>' style="font-size: 20px; border: 1px solid #ccc; border-radius: 50%;"><%= fa_icon 'volume-up' %></button>
             <br>
             <span class="speak-on-vocabulary" style="display: none;">
               <%= fa_icon 'arrow-right', style: 'color: #dc3545; font-size: 12px;' %>

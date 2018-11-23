@@ -28,13 +28,6 @@ module ApplicationHelper
     markdown.render(text).html_safe
   end
 
-  def audio(url)
-    url = URI.encode(url)
-    "https://audio.vocab.com/1.0/us/#{Nokogiri::HTML(open(url)).xpath('//a/@data-audio').first.value}.mp3"
-  rescue StandardError
-    # redirect_to 'https://www.vocabulary.com/dictionary/airbag'
-  end
-
   def image(word)
     url = URI.encode("https://www.bing.com/images/search?q=#{word}")
     doc = Nokogiri::HTML(open(url))

@@ -27,6 +27,8 @@
 
 <hr>
 
+<%- mp3 = rails_blob_path(@dictionary.audio, disposition: :attachment) if @dictionary.audio.attached? %>
+
 <p>
   <strong>References:</strong>
   <span><%= link_to 'Laban', "https://dict.laban.vn/find?type=1&query=#{@dictionary.english.split(' ').join('+')}", class: 'btn btn-default references', target: '_blank' %></span>
@@ -35,9 +37,9 @@
   <span><%= link_to 'Google', "https://translate.google.com.vn/m/translate?hl=vi#view=home&op=translate&sl=en&tl=vi&text=#{@dictionary.english}", class: 'btn btn-default references', target: '_blank' %></span>
   (<span>
     <audio preload="none">
-      <source class="mp3" src='<%= audio("https://www.vocabulary.com/dictionary/#{@dictionary.english}") %>' />
+      <source class="mp3" src='<%= mp3 %>' />
     </audio>
-    <button class="speak btn btn-default" data-mp3='<%= audio("https://www.vocabulary.com/dictionary/#{@dictionary.english}") %>' style="font-size: 20px;"><%= fa_icon 'volume-up' %></button>
+    <button class="speak btn btn-default" data-mp3='<%= mp3 %>' style="font-size: 20px;"><%= fa_icon 'volume-up' %></button>
     <span class="speak-on-vocabulary" style="display: none;">
       <%= fa_icon 'arrow-right', style: 'color: #dc3545;' %>
       <a href="https://www.vocabulary.com/dictionary/<%= @dictionary.english %>" target="_blank" class="text-danger">RETRY!</a>

@@ -1,10 +1,12 @@
+<%- mp3 = rails_blob_path(@word.audio, disposition: :attachment) if @word.audio.attached? %>
+
 <div class="game-wrapper text-center" style="margin-top: 100px;" data-id="<%= @scene.id %>" data-index="<%= @index %>" data-numeric="<%= @scene.numeric %>">
   <div class="source-word">
     <span><%= @source_word %></span>
   </div>
   <div class="position">Position: <%= @index + 1 %>/<%= @scene.words.split(',').count %></div>
   <div style="margin-top: 15px;">
-    <button class="speak btn btn-default" data-mp3='<%= audio("https://www.vocabulary.com/dictionary/#{@scene.dict_type == 'en-vi' ? @source_word : @destination_word}") %>' style="font-size: 20px; border: 1px solid #ccc; border-radius: 50%;"><%= fa_icon 'volume-up' %></button>
+    <button class="speak btn btn-default" data-mp3='<%= mp3 %>' style="font-size: 20px; border: 1px solid #ccc; border-radius: 50%;"><%= fa_icon 'volume-up' %></button>
   </div>
   <div class="destination-word" data-word="<%= @destination_word %>" style="margin-top: 15px;">
     <div class="form-group">
